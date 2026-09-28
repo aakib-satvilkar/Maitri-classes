@@ -1,0 +1,16 @@
+# Render Blueprint — needs a paid instance because a persistent disk is required
+services:
+  - type: web
+    name: maitri-classes
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false        # you enter it in the Render dashboard
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: maitri-data
+      mountPath: /data
+      sizeGB: 2
